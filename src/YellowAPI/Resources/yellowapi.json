@@ -1,0 +1,172 @@
+{
+  "name": "YellowAPI",
+    "apiVersion": "1.0",
+    "description": "Canadian Yellow API REST client",
+    "operations": {
+      "FindBusiness": {
+        "httpMethod": "GET",
+        "uri": "FindBusiness/",
+        "summary": "Returns local Canadian businesses that are most relevant to the search criteria",
+        "parameters": {
+          "pg": {
+            "description": "The requested page.",
+            "type": "integer",
+            "location": "query",
+            "required": "false",
+            "default": "1"
+          },
+          "what": {
+            "description": "Keyword search term",
+            "type": "string",
+            "location": "query",
+            "required": "true"
+          },
+          "where": {
+            "description": "Where to search",
+            "type": "string",
+            "location": "query",
+            "required": "true"
+          },
+          "lang": {
+            "description": "Language for results",
+            "type": "string",
+            "location": "query",
+            "required": "false",
+            "default": "en"
+          },
+          "pgLen": {
+            "description": "Number of results to return per page.",
+            "type": "integer",
+            "location": "query",
+            "required": "false",
+            "default": "40"
+          },
+          "fmt": {
+            "description": "Format to return results in (XML or JSON)",
+            "type": "string",
+            "location": "query",
+            "required": "false",
+            "default": "XML"
+          },
+          "sflag": {
+            "description": "Flags to modify search results.",
+            "type": "string",
+            "location": "query",
+            "required": "false"
+          }
+        }
+      },
+      "GetBusinessDetails": {
+        "httpMethod": "GET",
+        "uri": "GetBusinessDetails/",
+        "summary": "Gets full information on an individual business.",
+        "parameters": {
+          "prov": {
+            "description": "Name of the province where the business is located.",
+            "type": "string",
+            "location": "query",
+            "required": "true"
+          },
+          "city": {
+            "description": "City the business is located in.",
+            "type": "string",
+            "location": "query",
+            "required": "false"
+          },
+          "bus-name": {
+            "description": "Business name, normalized.",
+            "type": "string",
+            "location": "query",
+            "required": "true"
+          },
+          "listingId": {
+            "description": "Listing id of the business to look up.",
+            "type": "string",
+            "location": "query",
+            "required": "true"
+          },
+          "lang": {
+            "description": "Language for result",
+            "type": "string",
+            "location": "query",
+            "required": "false",
+            "default": "en"
+          },
+          "fmt": {
+            "description": "Format to return results in (XML or JSON)",
+            "type": "string",
+            "location": "query",
+            "required": "false",
+            "default": "XML"
+          },
+        }
+      },
+      "FindDealer": {
+        "httpMethod": "GET",
+        "uri": "FindDealer/",
+        "summary": "Returns a list of all dealers/franchises for a business",
+        "parameters": {
+          "pid": {
+            "description": "Listing id of the parent business.",
+            "type": "string",
+            "location": "query",
+            "required": "true"
+          },
+          "pg": {
+            "description": "The requested page.",
+            "type": "integer",
+            "location": "query",
+            "required": "false",
+            "default": "1"
+          },
+          "lang": {
+            "description": "Language for results",
+            "type": "string",
+            "location": "query",
+            "required": "false",
+            "default": "en"
+          },
+          "pgLen": {
+            "description": "Number of results to return per page.",
+            "type": "integer",
+            "location": "query",
+            "required": "false",
+            "default": "40"
+          },
+          "fmt": {
+            "description": "Format to return results in (XML or JSON)",
+            "type": "string",
+            "location": "query",
+            "required": "false",
+            "default": "XML"
+          },
+        }
+      },
+      "GetTypeAhead": {
+        "httpMethod": "GET",
+        "uri": "GetTypeAhead",
+        "summary": "Returns possible search terms based on the characters a user has entered",
+        "parameters": {
+          "lang": {
+            "description": "Language for results",
+            "type": "string",
+            "location": "query",
+            "required": "false",
+            "default": "en"
+          },
+          "text": {
+            "description": "Characters typed by the user",
+            "type": "string",
+            "location": "query",
+            "required": "true"
+          },
+          "field": {
+            "description": "Field to search (WHAT or WHERE)",
+            "type": "string",
+            "location": "query",
+            "required": "true"
+          },
+        }
+      }
+    }
+}

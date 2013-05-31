@@ -1,0 +1,24 @@
+{
+    "name": "jcook/yellow-api",
+    "description": "Unofficial library for accessing the Canadian Yellow Pages API using Guzzle.",
+    "autoload": {
+	"psr-0": { "YellowAPI": "src/" }
+    },
+    "require": {
+        "guzzle/guzzle": "3.6.0"
+    },
+    "require-dev": {
+	"phpunit/phpunit": "3.7.21"
+    },
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Jeremy Cook",
+            "email": "jeremycook0@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "config": {
+	"bin-dir": "bin"
+    }
+}
