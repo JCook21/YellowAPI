@@ -1,7 +1,7 @@
 {
   "name": "YellowAPI",
     "apiVersion": "1.0",
-    "description": "Canadian Yellow API REST client",
+    "description": "Canadian Yellow Pages API REST client",
     "operations": {
       "FindBusiness": {
         "httpMethod": "GET",
@@ -12,47 +12,59 @@
             "description": "The requested page.",
             "type": "integer",
             "location": "query",
-            "required": "false",
-            "default": "1"
+            "required": false,
+            "default": 1
           },
           "what": {
             "description": "Keyword search term",
             "type": "string",
             "location": "query",
-            "required": "true"
+            "required": true
           },
           "where": {
             "description": "Where to search",
             "type": "string",
             "location": "query",
-            "required": "true"
+            "required": true
           },
           "lang": {
             "description": "Language for results",
             "type": "string",
             "location": "query",
-            "required": "false",
+            "required": false,
             "default": "en"
           },
           "pgLen": {
             "description": "Number of results to return per page.",
             "type": "integer",
             "location": "query",
-            "required": "false",
-            "default": "40"
+            "required": false,
+            "default": 40
           },
           "fmt": {
             "description": "Format to return results in (XML or JSON)",
             "type": "string",
             "location": "query",
-            "required": "false",
+            "required": false,
             "default": "XML"
           },
           "sflag": {
             "description": "Flags to modify search results.",
             "type": "string",
             "location": "query",
-            "required": "false"
+            "required": false
+          },
+          "apiKey": {
+            "description": "API key",
+            "type": "string",
+            "required": true,
+            "location": "query"
+          },
+          "UID": {
+            "description": "UID to associate with the request",
+            "type": "string",
+            "required": true,
+            "location": "query"
           }
         }
       },
@@ -65,40 +77,52 @@
             "description": "Name of the province where the business is located.",
             "type": "string",
             "location": "query",
-            "required": "true"
+            "required": true
           },
           "city": {
             "description": "City the business is located in.",
             "type": "string",
             "location": "query",
-            "required": "false"
+            "required": false
           },
           "bus-name": {
             "description": "Business name, normalized.",
             "type": "string",
             "location": "query",
-            "required": "true"
+            "required": true
           },
           "listingId": {
             "description": "Listing id of the business to look up.",
             "type": "string",
             "location": "query",
-            "required": "true"
+            "required": true
           },
           "lang": {
             "description": "Language for result",
             "type": "string",
             "location": "query",
-            "required": "false",
+            "required": false,
             "default": "en"
           },
           "fmt": {
             "description": "Format to return results in (XML or JSON)",
             "type": "string",
             "location": "query",
-            "required": "false",
+            "required": false,
             "default": "XML"
           },
+          "apiKey": {
+            "description": "API key",
+            "type": "string",
+            "required": true,
+            "location": "query"
+          },
+          "UID": {
+            "description": "UID to associate with the request",
+            "type": "string",
+            "required": true,
+            "location": "query"
+          }
         }
       },
       "FindDealer": {
@@ -110,36 +134,48 @@
             "description": "Listing id of the parent business.",
             "type": "string",
             "location": "query",
-            "required": "true"
+            "required": true
           },
           "pg": {
             "description": "The requested page.",
             "type": "integer",
             "location": "query",
-            "required": "false",
-            "default": "1"
+            "required": false,
+            "default": 1
           },
           "lang": {
             "description": "Language for results",
             "type": "string",
             "location": "query",
-            "required": "false",
+            "required": false,
             "default": "en"
           },
           "pgLen": {
             "description": "Number of results to return per page.",
             "type": "integer",
             "location": "query",
-            "required": "false",
-            "default": "40"
+            "required": false,
+            "default": 40
           },
           "fmt": {
             "description": "Format to return results in (XML or JSON)",
             "type": "string",
             "location": "query",
-            "required": "false",
+            "required": false,
             "default": "XML"
           },
+          "apiKey": {
+            "description": "API key",
+            "type": "string",
+            "required": true,
+            "location": "query"
+          },
+          "UID": {
+            "description": "UID to associate with the request",
+            "type": "string",
+            "required": true,
+            "location": "query"
+          }
         }
       },
       "GetTypeAhead": {
@@ -151,21 +187,33 @@
             "description": "Language for results",
             "type": "string",
             "location": "query",
-            "required": "false",
+            "required": false,
             "default": "en"
           },
           "text": {
             "description": "Characters typed by the user",
             "type": "string",
             "location": "query",
-            "required": "true"
+            "required": true
           },
           "field": {
             "description": "Field to search (WHAT or WHERE)",
             "type": "string",
             "location": "query",
-            "required": "true"
+            "required": true
           },
+          "apiKey": {
+            "description": "API key",
+            "type": "string",
+            "required": true,
+            "location": "query"
+          },
+          "UID": {
+            "description": "UID to associate with the request",
+            "type": "string",
+            "required": true,
+            "location": "query"
+          }
         }
       }
     }

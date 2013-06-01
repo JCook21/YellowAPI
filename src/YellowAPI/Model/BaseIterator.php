@@ -34,10 +34,10 @@ abstract class BaseIterator extends ResourceIterator
         $this->command->set('pg', $this->page);
         $result = $this->command->execute();
         if ($result->getContentType() === 'text/xml') {
-            return $this->parseXml($response->xml());
+            return $this->parseXml($result->xml());
         }
 
-        return $this->parseJson($response->json());
+        return $this->parseJson($result->json());
     }
 
     /**
@@ -49,25 +49,44 @@ abstract class BaseIterator extends ResourceIterator
     protected function parseXml(SimpleXMLElement $xml)
     {
         $results = $xml->xpath('//Listings/Listing');
+        //@codingStandardsIgnoreStart
         $currentPage = (int) $xml->Summary->Paging->CurrentPage;
-        $pageCount = (int) $xml->Summary->Paging->PageCount;
-        switch ($currentPage === $pageCount) {
-        case true:
-            $this->nextToken = false;
-            break;
-        default:
-            $this->nextToken = true;
-            $this->page++;
-        }
+        $pageCount   = (int) $xml->Summary->Paging->PageCount;
+        //@codingStandardsIgnoreEnd
+        $this->setNextValues($pageCount, $currentPage);
+
+        return $results;
     }
 
     /**
      * Method to parse JSON returned into an array.
      * @param stdClass $data
-     * 
+     *
      * @return array
      */
     protected function parseJson(stdClass $data)
     {
+        $results     = $data->listings;
+        $currentPage = $data->summary->currentPage;
+        $pageCount   = $data->summary->pageCount;
+        $this->setNextValues($pageCount, $currentPage);
+
+        return $results;
+    }
+
+    /**
+     * Method to decide if there are more results to fetch
+     * @param int $pageCount
+     * @param int $currentPage
+     */
+    protected function setNextValues($pageCount, $currentPage)
+    {
+        if ($pageCount === $currentPage) {
+            $this->nextToken = false;
+
+            return;
+        }
+        $this->nextToken = true;
+        $this->pageCount++;
     }
 }

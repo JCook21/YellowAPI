@@ -32,22 +32,21 @@ class YellowAPIClient extends Client
      *
      * @return YellowAPI\YellowAPIClient
      */
-    public static function factory($config = array())
+    public static function factory($config = [])
     {
+        //Default values to use
         $default = array(
             'base_url' => self::PROD_URL,
-            'uid'      => hash('sha1', mt_rand())
         );
 
+        //Required parameters when creating a client.
         $required = array(
             'base_url',
-            'apiKey',
-            'uid'
         );
 
         $config = Collection::fromConfig($config, $default, $required);
         $client = new self($config->get('base_url'), $config);
-        $client->setDescription(__DIR__ . '/Resources/yellowapi.json');
+        $client->setDescription(ServiceDescription::factory(__DIR__ . '/Resources/yellowapi.json'));
 
         return $client;
     }
