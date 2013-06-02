@@ -93,7 +93,7 @@
           },
           "listingId": {
             "description": "Listing id of the business to look up.",
-            "type": "string",
+            "type": ["integer", "string"],
             "location": "query",
             "required": true
           },
@@ -132,7 +132,7 @@
         "parameters": {
           "pid": {
             "description": "Listing id of the parent business.",
-            "type": "string",
+            "type": ["integer", "string"],
             "location": "query",
             "required": true
           },

@@ -4,7 +4,6 @@ namespace YellowAPI\Model;
 
 use Guzzle\Service\Resource\ResourceIterator;
 use SimpleXMLElement;
-use stdClass;
 
 /**
  * Class: BaseIterator
@@ -31,13 +30,16 @@ abstract class BaseIterator extends ResourceIterator
      */
     protected function sendRequest()
     {
+        if ($this->pageSize) {
+            $this->command->set('pgLen', $this->pageSize);
+        }
         $this->command->set('pg', $this->page);
         $result = $this->command->execute();
-        if ($result->getContentType() === 'text/xml') {
-            return $this->parseXml($result->xml());
+        if ($result instanceof SimpleXMLElement) {
+            return $this->parseXml($result);
         }
 
-        return $this->parseJson($result->json());
+        return $this->parseJson($result);
     }
 
     /**
@@ -60,15 +62,15 @@ abstract class BaseIterator extends ResourceIterator
 
     /**
      * Method to parse JSON returned into an array.
-     * @param stdClass $data
+     * @param array $data
      *
      * @return array
      */
-    protected function parseJson(stdClass $data)
+    protected function parseJson(array $data)
     {
-        $results     = $data->listings;
-        $currentPage = $data->summary->currentPage;
-        $pageCount   = $data->summary->pageCount;
+        $results     = $data['listings'];
+        $currentPage = $data['summary']['currentPage'];
+        $pageCount   = $data['summary']['pageCount'];
         $this->setNextValues($pageCount, $currentPage);
 
         return $results;
@@ -82,11 +84,11 @@ abstract class BaseIterator extends ResourceIterator
     protected function setNextValues($pageCount, $currentPage)
     {
         if ($pageCount === $currentPage) {
-            $this->nextToken = false;
+            $this->nextToken = null;
 
             return;
         }
         $this->nextToken = true;
-        $this->pageCount++;
+        $this->page++;
     }
 }
